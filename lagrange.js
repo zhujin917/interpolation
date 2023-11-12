@@ -11,16 +11,16 @@ function lagrangeInterpolation(points) {
     let numeratorResult = new Array(points.length).fill(0); // 各拉格朗日基函数分子的和
     let denominatorResult; // 各拉格朗日基函数分母的最小公倍数
 
-    for (let individualIndex in points) {
+    for (const individualIndex in points) {
         let numerator = [1]; // 分子各次数的系数
         let denominator = 1; // 分母
-        for (let divisorIndex in points) {
+        for (const divisorIndex in points) {
             if (individualIndex == divisorIndex) {
                 continue;
             }
-            let temp1 = [0].concat(numerator); // 乘上 x
-            let temp2 = numerator.map(element => element * -points[divisorIndex][0]).concat([0]);
-            for (let i in temp1) {
+            const temp1 = [0].concat(numerator); // 乘上 x
+            const temp2 = numerator.map(element => element * -points[divisorIndex][0]).concat([0]);
+            for (const i in temp1) {
                 numerator[i] = temp1[i] + temp2[i];
             }
             denominator *= (points[individualIndex][0] - points[divisorIndex][0]);
@@ -29,8 +29,8 @@ function lagrangeInterpolation(points) {
         denominatorResult = (individualIndex == 0) ? denominator : denominatorResult / gcd(denominatorResult, denominator) * denominator;
     }
 
-    for (let individualIndex in points) {
-        for (let numeratorIndex in numeratorResult) {
+    for (const individualIndex in points) {
+        for (const numeratorIndex in numeratorResult) {
             numeratorResult[numeratorIndex] += points[individualIndex][1] * individual[individualIndex][0][numeratorIndex] * (denominatorResult / individual[individualIndex][1]);
         }
     }
