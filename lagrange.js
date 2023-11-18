@@ -7,12 +7,12 @@ function lagrangeInterpolation(points) {
         return gcd(b, a % b);
     };
 
-    let individual = []; // 拉格朗日基函数
-    let numeratorResult = new Array(points.length).fill(0); // 各拉格朗日基函数分子的和
+    const individual = []; // 拉格朗日基函数
+    const numeratorResult = new Array(points.length).fill(0); // 各拉格朗日基函数分子的和
     let denominatorResult; // 各拉格朗日基函数分母的最小公倍数
 
     for (const individualIndex in points) {
-        let numerator = [1]; // 分子各次数的系数
+        const numerator = [1]; // 分子各次数的系数
         let denominator = 1; // 分母
         for (const divisorIndex in points) {
             if (individualIndex == divisorIndex) {
